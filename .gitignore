@@ -1,0 +1,13 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Database (We usually don't push the actual DB)
+db.sqlite3
+
+# Virtual Environment
+venv/
+env/
+
+# Environment variables (Safety)
+.env

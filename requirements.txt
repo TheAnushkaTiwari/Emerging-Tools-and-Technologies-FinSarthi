@@ -1,0 +1,10 @@
+django
+djangorestframework
+django-cors-headers
+langchain
+langchain-community
+langchain-openai
+faiss-cpu
+pypdf
+python-dotenv
+tiktoken
