@@ -11,3 +11,5 @@ env/
 
 # Environment variables (Safety)
 .env
+
+faiss_index/

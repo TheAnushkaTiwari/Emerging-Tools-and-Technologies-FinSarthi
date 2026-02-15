@@ -17,7 +17,7 @@ class UserProfile(models.Model):
     ]
     occupation = models.CharField(max_length=20, choices=OCCUPATION_CHOICES)
     
-    # Financial Context (Optional for now, but good for resume)
+    
     monthly_income = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
     
     def __str__(self):
