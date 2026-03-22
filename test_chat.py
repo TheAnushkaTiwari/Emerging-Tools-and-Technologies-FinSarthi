@@ -4,7 +4,7 @@ import requests
 url = "http://127.0.0.1:8000/api/chat/ask/"
 
 # A question that should be in your RBI PDF
-question = "What is the definition of KYC?"
+question = "What is investment?"
 
 print(f"🤖 Asking FinSarthi: '{question}'...")
 

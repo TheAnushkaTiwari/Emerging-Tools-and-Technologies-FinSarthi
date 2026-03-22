@@ -1,10 +1,22 @@
+# Web Framework
 django
 djangorestframework
 django-cors-headers
-langchain
-langchain-community
-langchain-openai
+
+# Environment Variables
+python-dotenv
+
+# LangChain Core & Pydantic (Version Locked for Stability)
+pydantic==2.8.2
+langchain==0.2.16
+langchain-community==0.2.16
+langchain-core==0.2.38
+
+# LLM & Embeddings (Groq + HuggingFace)
+langchain-groq<0.2.0
+langchain-huggingface
+sentence-transformers
+
+# Vector Database & Document Processing
 faiss-cpu
 pypdf
-python-dotenv
-tiktoken
