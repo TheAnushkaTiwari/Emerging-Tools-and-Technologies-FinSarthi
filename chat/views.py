@@ -60,7 +60,10 @@ class ChatAPIView(APIView):
             qa_chain = RetrievalQA.from_chain_type(
                 llm=llm,
                 chain_type="stuff",
-                retriever=vectorstore.as_retriever(search_kwargs={"k": 3}), # Top 3 chunks
+                retriever=vectorstore.as_retriever(
+                    search_type="mmr",
+                    search_kwargs={"k": 10, "fetch_k": 20}
+                ),
                 return_source_documents=True,
                 chain_type_kwargs={"prompt": QA_CHAIN_PROMPT}
             )
