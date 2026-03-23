@@ -81,13 +81,14 @@ const Chat = () => {
             <Paper
               sx={{
                 p: 2,
-                maxWidth: "70%",
+                maxWidth: "75%",
                 bgcolor: msg.sender === "user" ? "secondary.main" : "white",
-                color: msg.sender === "user" ? "white" : "black",
-                boxShadow: "0px 2px 4px rgba(0,0,0,0.05)",
+                color: msg.sender === "user" ? "white" : "text.primary",
+                boxShadow: "0px 2px 8px rgba(0,0,0,0.08)",
+                borderRadius: msg.sender === "user" ? "20px 20px 4px 20px" : "20px 20px 20px 4px",
               }}
             >
-              <Typography variant="body1" sx={{ whiteSpace: "pre-wrap" }}>
+              <Typography variant="body1" sx={{ whiteSpace: "pre-wrap", lineHeight: 1.6 }}>
                 {msg.text}
               </Typography>
             </Paper>
@@ -97,9 +98,11 @@ const Chat = () => {
         {/* The "Thinking" Animation */}
         {isLoading && (
           <Box sx={{ display: "flex", justifyContent: "flex-start", mb: 2 }}>
-             <Paper sx={{ p: 2, bgcolor: "white", display: "flex", alignItems: "center", gap: 1 }}>
-                <CircularProgress size={20} color="secondary" />
-                <Typography variant="body2" color="text.secondary">FinSarthi is typing...</Typography>
+             <Paper sx={{ p: 2, bgcolor: "white", display: "flex", alignItems: "center", gap: 2,
+              boxShadow: "0px 2px 8px rgba(0,0,0,0.08)", borderRadius: "20px 20px 20px 4px"
+              }}>
+                <CircularProgress size={24} color="secondary" thickness={5} />
+                <Typography variant="body2" color="text.secondary" sx={{ fontWeight: 500 }}>FinSarthi is reviewing documents...</Typography>
              </Paper>
           </Box>
         )}
@@ -107,19 +110,20 @@ const Chat = () => {
       </Box>
 
       {/* Suggested Questions */}
-      <Box sx={{ px: 3, pb: 1 }}>
-        {suggestedQuestions.map((question, i) => (
-          <Chip
-            key={i}
-            label={question}
-            onClick={() => {
+      {messages.length <= 1 && (
+        <Box sx={{ px: 3, pb: 1 }}>
+          {suggestedQuestions.map((question, i) => (
+            <Chip
+              key={i}
+              label={question}
+              onClick={() => {
                 setInput(question);
-                // Optional: You could call sendMessage() right here to auto-send the suggestion!
-            }}
-            sx={{ mr: 1, mb: 1, cursor: "pointer", '&:hover': { bgcolor: '#e2e8f0' } }}
-          />
-        ))}
-      </Box>
+              }}
+              sx={{ mr: 1, mb: 1, cursor: "pointer", '&:hover': { bgcolor: '#e2e8f0' } }}
+              />
+            ))}
+        </Box>
+      )}
 
       {/* Input Box */}
       <Box sx={{ p: 2, borderTop: "1px solid #E2E8F0", display: "flex", bgcolor: "white" }}>
