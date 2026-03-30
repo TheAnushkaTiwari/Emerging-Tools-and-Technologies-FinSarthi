@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+from datetime import timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -136,3 +137,27 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # For now, just add these settings at the bottom of the file:
 
 CORS_ALLOW_ALL_ORIGINS = True  # Allows React to connect
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated', # Protects all endpoints by default
+    ],
+}
+
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),   # How long the "Passport" lasts
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),     # How long the "Login Session" lasts
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'AUTH_HEADER_TYPES': ('Bearer',),                # The standard way to send tokens
+}
+
+# Add this to ensure React (on port 5173) can definitely talk to Django (on port 8000)
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
