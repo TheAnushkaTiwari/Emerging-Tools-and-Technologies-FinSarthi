@@ -2,6 +2,8 @@
 django
 djangorestframework
 django-cors-headers
+djangorestframework-simplejwt
+
 
 # Environment Variables
 python-dotenv

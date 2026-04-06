@@ -9,6 +9,7 @@ from langchain_community.vectorstores import FAISS
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
 from dotenv import load_dotenv
+from .models import ChatMessage
 
 load_dotenv()
 
@@ -85,3 +86,4 @@ class ChatAPIView(APIView):
         except Exception as e:
             print(f"Error: {str(e)}")
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
