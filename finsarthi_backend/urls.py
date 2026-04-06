@@ -17,7 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path , include
 from users.views import RegisterView # Import your new view
-from chat.views import ChatAPIView
+from chat.views import ChatAPIView, ChatHistoryListView, ChatSessionDetailView
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
@@ -28,5 +28,7 @@ urlpatterns = [
     path('api/register/', RegisterView.as_view(), name='auth_register'),
     path('api/login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/chat/', ChatAPIView.as_view(), name='chat'),
+    path('api/chat/history/', ChatHistoryListView.as_view(), name='chat_history'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/chat/session/<int:pk>/', ChatSessionDetailView.as_view(), name='chat_detail'),
 ]

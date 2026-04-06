@@ -13,6 +13,11 @@ class Command(BaseCommand):
         #defining paths
         data_folder = os.path.join(settings.BASE_DIR, 'data')
         faiss_index_path = os.path.join(settings.BASE_DIR, 'faiss_index')
+        if os.path.exists(faiss_index_path):
+            self.stdout.write(self.style.WARNING(
+                "FAISS index already exists. Delete it before re-ingesting."
+            ))
+            return
 
         #checking if data folder exists
         if not os.path.exists(data_folder):
