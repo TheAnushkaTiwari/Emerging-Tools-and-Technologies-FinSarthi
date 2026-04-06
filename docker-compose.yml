@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  #Python Backend Service
+  backend:
+    build: .                 #use the Dockerfile in this current main folder
+    ports:
+      - "8000:8000"          #map Windows port 8000 to Container port 8000
+    volumes:
+      - ./:/app              #sync Windows folder to the container's /app folder
+    command: python manage.py runserver 0.0.0.0:8000
+
+  # 2. The Node.js Frontend Service
+  frontend:
+    build: ./frontend        #use the Dockerfile inside the frontend folder
+    ports:
+      - "5173:5173"          #map Windows port 5173 to Container port 5173
+    volumes:
+      - ./frontend:/app      
+      - /app/node_modules    #Docker trick to stop Windows from breaking Node
+    depends_on:
+      - backend              # Tell the frontend to wait until the backend starts
