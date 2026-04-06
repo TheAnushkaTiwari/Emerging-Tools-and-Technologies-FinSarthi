@@ -14,8 +14,17 @@ class Message(models.Model):
     content = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
     
-    # For RAG: We store sources here to prove to your teacher we aren't hallucinating
+    # For RAG: We store sources here to so that aren't hallucinating
     citations = models.JSONField(null=True, blank=True)
 
     def __str__(self):
         return f"{self.sender}: {self.content[:30]}..."
+    
+class ChatMessage(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    role = models.CharField(max_length=10) # 'user' or 'assistant'
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['timestamp']

@@ -14,6 +14,7 @@ from .models import ChatSession, Message
 from .serializers import ChatSessionSerializer, MessageSerializer
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from django.core.exceptions import PermissionDenied
+from .models import ChatMessage
 
 load_dotenv()
 
@@ -144,3 +145,4 @@ class ChatSessionDetailView(RetrieveAPIView):
         if obj.user != self.request.user:
             raise PermissionDenied("You do not have access to this conversation.")
         return obj
+
